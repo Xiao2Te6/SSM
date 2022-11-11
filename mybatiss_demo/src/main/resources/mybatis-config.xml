@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<!--mybatis的主配置-->
+<configuration>
+    <!--  对于mybatis连接到的环境进行配置  -->
+
+    <!-- 加载数据库连接配置文件    -->
+    <properties resource="db.properties"/>
+
+    <!-- 类型别名 ：该包下所有类的全类名简化为类名-->
+    <typeAliases>
+        <package name="com.atxiao2.mybatis_maven_test.domain"/>
+    </typeAliases>
+
+    <!--
+         本地环境 localhost
+         测试环境 test
+         现网运行环境 master
+    -->
+    <environments default="localhost">
+        <environment id="localhost">
+            <!--对应mybatis包中的org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory类，JDBC中的内置事务管理器 -->
+            <transactionManager type="JDBC"></transactionManager>
+
+            <dataSource type="POOLED">
+                <property name="driver" value="${driverClassName}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--引入映射文件-->
+    <mappers>
+        <mapper resource="asia/xiaoer/mybatis/mybatis_demo/mappers/UserMapper.xml"/>
+    </mappers>
+
+</configuration>
