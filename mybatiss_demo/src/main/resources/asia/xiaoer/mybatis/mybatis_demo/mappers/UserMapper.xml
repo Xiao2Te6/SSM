@@ -6,7 +6,31 @@
 
     <!--int insertUser();-->
     <insert id="insertUser">
-        insert into user values(null,'李四',19,'男')
+        insert into user values(null,'李四',19,'男');
     </insert>
+
+    <!--int updateUser();-->
+    <update id="updateUser">
+        update user set name = "李六" where id = "3"
+    </update>
+
+    <!--void deleteOne();-->
+    <delete id="deleteOne">
+        delete from user where id = 3
+    </delete>
+
+    <!--int deleteAll();-->
+    <delete id="deleteAll">
+        delete from user;
+    </delete>
+
+    <select id="selectOne" resultType="asia.xiaoer.mybatis.mybatis_demo.domain.User">
+        select * from user where id = 3
+    </select>
+
+
+    <select id="selectAll" resultType="asia.xiaoer.mybatis.mybatis_demo.domain.User">
+        select * from user
+    </select>
 
 </mapper>
