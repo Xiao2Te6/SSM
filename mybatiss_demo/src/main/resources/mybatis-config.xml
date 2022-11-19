@@ -15,7 +15,7 @@
             typeAlias: type = "需要取别名的类型" alias = "别名（不设置alias属性使用默认别名）"
      -->
     <typeAliases>
-        <package name="com.atxiao2.mybatis_maven_test.domain"/>
+        <package name="asia/xiaoer/mybatis/mybatis_demo/domain"/>
     </typeAliases>
 
     <!--environments： 对于mybatis连接到的环境进行配置
