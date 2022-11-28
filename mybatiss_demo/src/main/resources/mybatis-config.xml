@@ -6,6 +6,9 @@
 
 <!--mybatis的主配置 -->
 <configuration>
+    <!--在MyBatis的配置文件中各个部分需要按照如下顺序配置：
+    properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,
+    reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?-->
 
     <!-- 加载数据库连接配置文件 后续可以使用 ${key} 形式获取value -->
     <properties resource="db.properties"/>
