@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xiaoer.asia.mybatis.mybatis_crud.mappers.EmployeeMapper">
+
+    <!--实体类类型的参数获取演示 void insertEmployee(Employee employee);-->
+    <insert id="insertEmployee">
+        insert into employee values(#{id}, #{name}, #{password}, #{email}, #{age}, #{dept_id});
+    </insert>
+
+    <!--单个字面量类型的参数获取演示-->
+    <update id="updateEmployeeAge">
+        update employee set age = #{age} where id = 1;
+    </update>
+
+    <update id="updateEmployeeAgeByName">
+        update employee set age = #{arg1} where name = #{arg0}
+    </update>
+
+
+    <update id="updateEmployeePasswordAndAgeByName">
+        update employee set password = #{param2},  age = #{param3} where name = #{param1}
+    </update>
+
+    <update id="updateEmployeePasswordByName">
+        update employee set password = #{password} where name = '${name}'
+    </update>
+
+
+</mapper>

@@ -1,5 +1,6 @@
 package asia.xiaoer.mybatis.mybatis_demo.mappers;
 
+
 import asia.xiaoer.mybatis.mybatis_demo.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,8 +11,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @author : XiaoEr

@@ -11,7 +11,7 @@
 
     <!--int updateUser();-->
     <update id="updateUser">
-        update user set name = "李六" where id = "3"
+        update user set name = '李六' where id = '3'
     </update>
 
     <!--void deleteOne();-->
