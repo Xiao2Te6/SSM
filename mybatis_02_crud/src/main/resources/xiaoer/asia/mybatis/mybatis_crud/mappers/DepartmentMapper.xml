@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xiaoer.asia.mybatis.mybatis_crud.mappers.DepartmentMapper">
+
+    <!--增-->
+    <insert id="insert">
+        insert into department values (#{id}, #{name}, #{sn});
+    </insert>
+
+    <!--使用主键自增  useGeneratedKeys：设置使用自增的主键 keyProperty：将自增的主键放在传输的参数user对象的某个属性中-->
+    <insert id="insertOne" useGeneratedKeys="true" keyProperty="id">
+        insert into department values (null, #{name}, #{sn});
+    </insert>
+
+    <!--改-->
+    <update id="update">
+        update department set name = #{name}, sn = #{sn} where id = #{id};
+    </update>
+
+    <!--删-->
+    <delete id="delete">
+        delete from department where id = #{id};
+    </delete>
+
+    <!--批量删除-->
+    <delete id="batchDeletion">
+        delete from department where id in (${ids})
+    </delete>
+
+    <!--查-->
+    <select id="selectOne" resultType="xiaoer.asia.mybatis.mybatis_crud.domain.Department">
+        select * from department where id = #{id};
+    </select>
+
+    <!--查询为List-->
+    <select id="selectAll" resultType="xiaoer.asia.mybatis.mybatis_crud.domain.Department">
+        select * from department;
+    </select>
+
+    <!--查询单个数据-->
+    <select id="getDeptCount" resultType="java.lang.Integer">
+        select count(*) from department
+    </select>
+
+    <!--查询一条数据为 Map-->
+    <select id="getDeptToMap" resultType="java.util.Map">
+        select * from department where id = #{id};
+    </select>
+
+    <!--//查询所有数据为Map集合 方式二-->
+    <select id="getAllToMap" resultType="java.util.Map">
+        select * from department;
+    </select>
+
+    <!--模糊查询-->
+    <select id="fuzzySearch" resultType="xiaoer.asia.mybatis.mybatis_crud.domain.Department">
+        select * from department
+        where name like '%${keyWord}%' or id like '%${keyWord}%' or sn like '%${keyWord}%'
+    </select>
+
+    <!--//动态设置表名，根据表名查询表中所有数据-->
+    <select id="selectAllForTableName" resultType="xiaoer.asia.mybatis.mybatis_crud.domain.Department">
+        select * from ${tableName}
+    </select>
+
+
+</mapper>

@@ -1,12 +1,16 @@
 package xiaoer.asia.mybatis.mybatis_crud.domain;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * @author : XiaoEr
  * @date : 2022/11/30
  */
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Department {
     private Long id;
     private String name;
