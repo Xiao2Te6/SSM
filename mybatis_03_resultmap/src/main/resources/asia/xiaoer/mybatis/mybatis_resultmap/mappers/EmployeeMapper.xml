@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.xiaoer.mybatis.mybatis_resultmap.mappers.EmployeeMapper">
+
+    <!--级联方式-->
+    <resultMap id="employeeMap1" type="asia.xiaoer.mybatis.mybatis_resultmap.domain.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+        <result property="dept.id" column="d_id"/>
+        <result property="dept.name" column="d_name"/>
+        <result property="dept.sn" column="d_sn"/>
+    </resultMap>
+
+    <!--使用association-->
+    <resultMap id="employeeMap2" type="asia.xiaoer.mybatis.mybatis_resultmap.domain.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+        <association property="dept" javaType="asia.xiaoer.mybatis.mybatis_resultmap.domain.Department">
+            <result property="id" column="d_id"/>
+            <result property="name" column="d_name"/>
+            <result property="sn" column="d_sn"/>
+        </association>
+    </resultMap>
+
+    <!--使用association分步查询-->
+    <resultMap id="employeeMap" type="asia.xiaoer.mybatis.mybatis_resultmap.domain.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+        <!--
+        select：设置分步查询，查询某个属性的值的sql的标识（namespace.sqlId）
+        column：将sql以及查询结果中的某个字段设置为分步查询的条件
+        -->
+        <association property="dept" select="asia.xiaoer.mybatis.mybatis_resultmap.mappers.DepartmentMapper.selectOne" column="id"/>
+    </resultMap>
+
+    <select id="selectOne" resultMap="employeeMap2">
+        select e.id, e.name, e.password, e.email, e.age, d.id d_id, d.name d_name, d.sn d_sn
+        from employee e join department d on e.dept_id = d.id
+        where e.id = #{id};
+    </select>
+
+    <!--使用association分布查询员工和员工所在部门 第一步-->
+    <select id="selectOneForSubStep" resultMap="employeeMap">
+        select * from employee where id = #{id};
+    </select>
+
+    <!--使用collection分步查询部门和部门中的所有员工 第二步-->
+    <select id="selectEmployeeForSubStep" resultType="asia.xiaoer.mybatis.mybatis_resultmap.domain.Employee">
+        select * from employee where dept_id = #{deptId};
+    </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.xiaoer.mybatis.mybatis_resultmap.mappers.DepartmentMapper">
+
+    <resultMap id="departmentMap" type="asia.xiaoer.mybatis.mybatis_resultmap.domain.Department">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sn" property="sn"/>
+        <collection property="employees" ofType="asia.xiaoer.mybatis.mybatis_resultmap.domain.Employee">
+            <result column="e_id" property="id"/>
+            <result column="e_name" property="name"/>
+            <result column="e_password" property="password"/>
+            <result column="e_email" property="email"/>
+            <result column="e_age" property="age"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="departmentSubStepMap" type="asia.xiaoer.mybatis.mybatis_resultmap.domain.Department">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sn" property="sn"/>
+        <collection property="employees" select="asia.xiaoer.mybatis.mybatis_resultmap.mappers.EmployeeMapper.selectEmployeeForSubStep" column="id"/>
+    </resultMap>
+
+
+    <!--employee分部查询第二步-->
+    <select id="selectOne" resultType="asia.xiaoer.mybatis.mybatis_resultmap.domain.Department">
+        select * from department where id = #{id};
+    </select>
+
+    <select id="selectDepartmentAndEmployee" resultMap="departmentMap">
+        select d.id, d.name, d.sn, e.id e_id ,e.name e_name, e.password e_password, e.email e_email, e.age e_age
+        from department d left join employee e on d.id = e.dept_id
+        where d.id = #{id};
+    </select>
+
+    <!--//使用collection分步查询部门和部门中的所有员工 第一步-->
+    <select id="selectOneForSubStep" resultMap="departmentSubStepMap">
+        select * from department where id = #{id};
+    </select>
+
+</mapper>
