@@ -12,7 +12,7 @@
 
     <!-- 加载数据库连接配置文件 后续可以使用 ${key} 形式获取value -->
     <properties resource="db.properties"/>
-    
+
 
     <!-- 类型别名 ：
             package：该包下所有类的全类名默认别名为类名且不区分大小写
