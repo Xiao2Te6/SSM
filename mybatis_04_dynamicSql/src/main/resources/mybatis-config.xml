@@ -13,12 +13,13 @@
     <!-- 加载数据库连接配置文件 后续可以使用 ${key} 形式获取value -->
     <properties resource="db.properties"/>
 
+
     <!-- 类型别名 ：
             package：该包下所有类的全类名默认别名为类名且不区分大小写
             typeAlias: type = "需要取别名的类型" alias = "别名（不设置alias属性使用默认别名）"
      -->
     <typeAliases>
-        <package name="asia/xiaoer/mybatis/mybatis_resultmap/domain"/>
+        <package name="asia/xiaoer/mybatis/mybatis_dynamicSql/domain"/>
     </typeAliases>
 
     <!--environments： 对于mybatis连接到的环境进行配置
@@ -43,7 +44,7 @@
     <!--引入映射文件：mapper接口和映射文件需要所在的包必须一致(编译过后在同一包下)且名字也得一致-->
     <mappers>
         <!--package name = "包名"将包下的所有映射文件都引入； mapper resource="Mapper.xml全路径名" 引入单个文件 -->
-        <package name="xiaoer/asia/mybatis/mybatis_crud/mappers"/>
+        <package name="asia.xiaoer.mybatis.mybatis_dynamicSql.mappers"/>
     </mappers>
 
 </configuration>

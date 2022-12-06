@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asia.xiaoer.mybatis.mybatis_dynamicSql.mappers.DepartmentMapper">
+
+    <!--Sql片段演示-->
+    <sql id="deptColumn" >
+       id, name, sn
+    </sql>
+
+    <select id="selectOne" resultType="asia.xiaoer.mybatis.mybatis_dynamicSql.domain.Department">
+        select <include refid="deptColumn"/> from department d where id = #{id};
+    </select>
+
+    <!--使用foreach标签进行批量添加-->
+    <insert id="batchAdd" keyProperty="id" useGeneratedKeys="true">
+        insert into department values
+        <foreach collection="departments" item="dept" separator=",">
+            (null, #{dept.name}, #{dept.sn})
+        </foreach>
+    </insert>
+
+    <!--使用foreach标签进行批量删除-->
+    <delete id="batchDeleteForId">
+        delete from department where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <!--if 标签使用演示 查询符合条件的部门-->
+    <select id="selectForConditionsOne" resultType="asia.xiaoer.mybatis.mybatis_dynamicSql.domain.Department">
+        select * from department where
+        <if test="id != null and id != ''">
+            id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="sn != null and sn != ''">
+            and sn = #{sn}
+        </if>
+    </select>
+
+    <!--使用where优化，根据传入条件查询符合的部门-->
+    <select id="selectForConditionsTwo" resultType="asia.xiaoer.mybatis.mybatis_dynamicSql.domain.Department">
+        select * from department
+            <where>
+                <if test="id != null and id != ''">
+                    and id = #{id}
+                </if>
+                <if test="name != null and name != ''">
+                    and name = #{name}
+                </if>
+                <if test="sn != null and sn != ''">
+                    and sn = #{sn}
+                </if>
+            </where>
+    </select>
+
+    <!--使用trim优化，根据传入条件查询符合的部门-->
+    <select id="selectForConditionsThree" resultType="asia.xiaoer.mybatis.mybatis_dynamicSql.domain.Department">
+        select * from department
+        <trim prefix="where"  prefixOverrides="and">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="sn != null and sn != ''">
+                and sn = #{sn}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 演示choose标签、when标签、otherwise标签
+         根据传入的多个条件查询符合 其一 的部门  -->
+    <select id="selectForConditions" resultType="asia.xiaoer.mybatis.mybatis_dynamicSql.domain.Department">
+        select * from department
+        <where>
+            <choose>
+                <when test="id != null and id != ''">
+                    id = #{id};
+                </when>
+                <when test="name != null and name != ''">
+                    name = #{name};
+                </when>
+                <when test="sn != null and sn != ''">
+                    sn = #{sn};
+                </when>
+                <!--当所有条件不符合时查询id为1的部门-->
+                <otherwise>
+                    id = 1;
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+
+</mapper>

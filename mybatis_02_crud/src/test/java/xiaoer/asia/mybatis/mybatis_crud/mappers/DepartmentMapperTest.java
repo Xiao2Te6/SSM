@@ -20,7 +20,7 @@ public class DepartmentMapperTest {
     public void insert() {
         SqlSession sqlSession = getSqlSession();
         DepartmentMapper mapper = sqlSession.getMapper(DepartmentMapper.class);
-        mapper.insert(new Department(2l,"奋斗部","0123t"));
+        mapper.insert(new Department(10l,"奋斗部","0123t"));
         close(sqlSession);
     }
 
