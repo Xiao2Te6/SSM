@@ -33,7 +33,7 @@ public class MybatisGenerateTest {
 
         EmployeeExample employeeExample = new EmployeeExample();
         employeeExample.createCriteria().andNameLike("高").andAgeIn(Arrays.asList(new Integer[]{18}));
-
+        //将之前添加的条件通过or拼接其他条件
         employeeExample.or().andIdGreaterThanOrEqualTo(4l);
 
         List<Employee> employees1 = mapper.selectByExample(employeeExample);
