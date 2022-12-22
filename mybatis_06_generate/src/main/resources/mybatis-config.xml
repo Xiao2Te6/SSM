@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<!--mybatis的主配置 -->
+<configuration>
+    <!--在MyBatis的配置文件中各个部分需要按照如下顺序配置：
+    properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,
+    reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?-->
+
+    <!-- 加载数据库连接配置文件 后续可以使用 ${key} 形式获取value -->
+    <properties resource="db.properties"/>
+
+
+    <!-- 类型别名 ：
+            package：该包下所有类的全类名默认别名为类名且不区分大小写
+            typeAlias: type = "需要取别名的类型" alias = "别名（不设置alias属性使用默认别名）"
+     -->
+    <typeAliases>
+        <package name="asia/xiaoer/mybatis/mybatis_generate/domain"/>
+    </typeAliases>
+
+    <!--environments： 对于mybatis连接到的环境进行配置
+         本地环境 localhost
+         测试环境 test
+         现网运行环境 master
+    -->
+    <environments default="localhost">
+        <environment id="localhost">
+            <!-- JDBC: 对应mybatis包中的org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory类，JDBC中的内置事务管理器
+                  MANAGED: 被框架管理（如spring）  -->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED"> <!--POOLED:使用连接池 UNPOOLED:不使用连接池 JNDI:使用上下文中的数据源-->
+                <property name="driver" value="${driverClassName}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--引入映射文件：mapper接口和映射文件需要所在的包必须一致(编译过后在同一包下)且名字也得一致-->
+    <mappers>
+        <!--package name = "包名"将包下的所有映射文件都引入； mapper resource="Mapper.xml全路径名" 引入单个文件 -->
+        <package name="asia.xiaoer.mybatis.mybatis_generate.mappers"/>
+    </mappers>
+
+</configuration>
