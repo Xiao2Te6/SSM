@@ -22,6 +22,12 @@
         <package name="asia/xiaoer/mybatis/mybatis_generate/domain"/>
     </typeAliases>
 
+    <plugins>
+        <!--设置分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+
     <!--environments： 对于mybatis连接到的环境进行配置
          本地环境 localhost
          测试环境 test
@@ -40,6 +46,7 @@
             </dataSource>
         </environment>
     </environments>
+
 
     <!--引入映射文件：mapper接口和映射文件需要所在的包必须一致(编译过后在同一包下)且名字也得一致-->
     <mappers>

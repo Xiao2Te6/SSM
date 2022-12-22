@@ -5,6 +5,9 @@ import static asia.xiaoer.mybatis.mybatis_generate.utils.MyBatisUtil.*;
 import asia.xiaoer.mybatis.mybatis_generate.domain.Employee;
 import asia.xiaoer.mybatis.mybatis_generate.domain.EmployeeExample;
 import asia.xiaoer.mybatis.mybatis_generate.mappers.EmployeeMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
@@ -15,10 +18,13 @@ import java.util.List;
  * @author : XiaoEr
  * @date : 2022/12/21
  *
- * mybatis逆向工程测试
+ *
  */
 public class MybatisGenerateTest {
 
+    /**
+     * mybatis逆向工程测试
+     */
     @Test
     public void test(){
         SqlSession sqlSession = getSqlSession();
@@ -39,8 +45,28 @@ public class MybatisGenerateTest {
         List<Employee> employees1 = mapper.selectByExample(employeeExample);
         employees1.stream().forEach(System.out::println);
 
-
         close(sqlSession);
+    }
+
+    /**
+     * Mybatis分页插件测试
+     */
+    @Test
+    public void test02(){
+        SqlSession sqlSession = getSqlSession();
+        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+
+        //开启分页
+        Page<Object> page = PageHelper.startPage(1, 2);
+        System.out.println("page = " + page);
+
+        List<Employee> employees = mapper.selectByExample(null);
+        employees.stream().forEach(System.out::println);
+
+        //获取分页相关的所有数据
+        PageInfo<Employee> employeePageInfo = new PageInfo<>(employees, 3);
+        System.out.println(employeePageInfo);
+
     }
 
 }
