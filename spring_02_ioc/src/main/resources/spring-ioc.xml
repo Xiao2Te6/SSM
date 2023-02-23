@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--通过setter注入Student依赖-->
+    <bean id="student" class="asia.xiaoer.spring.domain.Student" scope="singleton">
+        <!-- property标签：通过组件类的set()方法给组件对象设置属性
+             name属性：指定属性名
+             value属性：指定属性值 -->
+        <property name="name" value="小王"/>
+        <property name="sn" value="1001"/>
+        <property name="age" value="18"/>
+        <property name="score" value="99"/>
+     </bean>
+
+    <!--构造器注入-->
+    <bean id="studentTow" class="asia.xiaoer.spring.domain.Student">
+        <!--constructor-arg标签还有如下两个标签可以帮助依赖注入的准确性
+            index属性：指定参数所在位置的索引（从0开始）
+            name属性：指定参数名
+        -->
+        <constructor-arg value="小苟" name="name"/>
+        <constructor-arg value="1002" name="sn"/>
+        <constructor-arg value="18" name="age"/>
+        <constructor-arg value="80" name="score"/>
+        <constructor-arg ref="clazz" name="clazz"/>
+        <constructor-arg name="hobby">
+            <array>
+                <value>吃</value>
+                <value>喝</value>
+                <value>玩</value>
+            </array>
+        </constructor-arg>
+        <constructor-arg name="teachers">
+            <null></null>
+        </constructor-arg>
+   </bean>
+
+
+    <bean id="studentThree" class="asia.xiaoer.spring.domain.Student" scope="singleton">
+        <!--&lt;!&ndash;注入xml标签符号实体 <> 需要更换为实体&ndash;&gt;-->
+        <!--<property name="name" value="&lt;小王&gt;"/>-->
+        <!--使用CDATA节
+                在CDATA节中的内容定义为纯文本类型，不会被当作xml标签被解析-->
+        <property name="name">
+            <value>
+                <![CDATA[
+                    <小王>
+                ]]>
+            </value>
+        </property>
+        <property name="sn" value="1004"/>
+        <property name="age" value="22"/>
+        <property name="score" value="99"/>
+    </bean>
+
+    <bean id="clazz" class="asia.xiaoer.spring.domain.Clazz">
+        <property name="name" value="9班"/>
+        <property name="cid" value="1909"/>
+    </bean>
+
+    <bean id="studentFour" class="asia.xiaoer.spring.domain.Student" scope="singleton">
+        <property name="name" value="小高"/>
+        <property name="sn" value="1001"/>
+        <property name="age" value="18"/>
+        <property name="score" value="99"/>
+        <!--&lt;!&ndash;类类型注入 ref：通过容器中某个bean的id引用外部已声明的bean&ndash;&gt;-->
+        <!--<property name="clazz" ref="clazz"/>-->
+        <!--<property name="clazz.cid" value="1910"/>-->
+        <!--<property name="clazz.name" value="10班"/>-->
+        <property name="clazz">
+            <bean id="clazzTow" class="asia.xiaoer.spring.domain.Clazz">
+                <property name="cid" value="1911"/>
+                <property name="name" value="11班"/>
+            </bean>
+        </property>
+        <property name="hobby">
+            <array>
+                <value>抽烟</value>
+                <value>喝酒</value>
+                <value>烫头</value>
+            </array>
+        </property>
+     </bean>
+
+    <bean id="clazzThree" class="asia.xiaoer.spring.domain.Clazz">
+        <property name="name" value="9班"/>
+        <property name="cid" value="1909"/>
+        <!--<property name="student" ref="studentList"/>-->
+        <property name="students">
+            <list>
+                <ref bean="student"/>
+                <ref bean="studentTow"/>
+                <ref bean="studentThree"/>
+                <ref bean="studentFour"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--配置一个集合类型的bean需要用到util的约束 util:list -->
+    <util:list id="studentList">
+        <ref bean="student"/>
+        <ref bean="studentTow"/>
+        <ref bean="studentThree"/>
+    </util:list>
+
+
+    <bean id="teacher" class="asia.xiaoer.spring.domain.Teacher">
+        <property name="name" value="老王"/>
+        <property name="tid" value="01"/>
+    </bean>
+
+    <bean id="teacherTwo" class="asia.xiaoer.spring.domain.Teacher">
+        <property name="name" value="老杨"/>
+        <property name="tid" value="02"/>
+    </bean>
+
+
+
+    <bean id="studentFive" class="asia.xiaoer.spring.domain.Student">
+        <property name="name" value="小王"/>
+        <property name="sn" value="1005"/>
+        <property name="score" value="88"/>
+        <!--<property name="teachers" ref="teacherMap"/>-->
+        <property name="teachers">
+            <map>
+                <entry key="01" value-ref="teacher"/>
+                <entry key="02" value-ref="teacherTwo"/>
+            </map>
+        </property>
+    </bean>
+
+    <util:map id="teacherMap">
+        <entry key="01" value-ref="teacher"/>
+        <entry key="02" value-ref="teacherTwo"/>
+    </util:map>
+
+
+    <bean id="studentSix" class="asia.xiaoer.spring.domain.Student" p:name="小王"
+          p:sn="1006" p:age="55" p:teachers-ref="teacherMap"/>
+</beans>
