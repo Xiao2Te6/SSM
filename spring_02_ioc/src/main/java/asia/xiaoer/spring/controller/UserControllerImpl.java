@@ -1,4 +1,4 @@
-package asia.xiaoer.spring.controller.impl;
+package asia.xiaoer.spring.controller;
 
 import asia.xiaoer.spring.controller.UserController;
 import asia.xiaoer.spring.service.UserService;
@@ -7,7 +7,7 @@ import asia.xiaoer.spring.service.UserService;
  * @author : XiaoEr
  * @date : 2023/2/24
  */
-public class UserControllerImpl implements UserController {
+public class UserControllerImpl {
 
     UserService userService;
 
@@ -15,7 +15,6 @@ public class UserControllerImpl implements UserController {
         this.userService = userService;
     }
 
-    @Override
     public void saveUser() {
         userService.saveUser();
     }

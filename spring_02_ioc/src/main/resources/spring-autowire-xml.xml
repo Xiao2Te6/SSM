@@ -5,11 +5,17 @@
 
     <bean id="userDao" class="asia.xiaoer.spring.dao.impl.UserDaoImpl"/>
 
-    <bean id="userService" class="asia.xiaoer.spring.service.impl.UserServiceImpl" autowire="byType">
+    <!--
+        autowire="default"
+            为no或default表示不使用自动装配，'
+            byType为根据类型自动装配，
+            byName为根据id自动装配
+    -->
+    <bean id="userService" class="asia.xiaoer.spring.service.impl.UserServiceImpl" autowire="byName">
         <!--<property name="userDao" ref="userDao"/>-->
     </bean>
 
-    <bean class="asia.xiaoer.spring.controller.impl.UserControllerImpl" autowire="byName">
+    <bean id="userController" class="asia.xiaoer.spring.controller.UserControllerImpl " autowire="byType">
         <!--<property name="userService" ref="userService"/>-->
     </bean>
 

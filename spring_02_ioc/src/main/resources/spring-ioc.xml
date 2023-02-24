@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!--通过setter注入Student依赖-->
-    <bean id="student" class="asia.xiaoer.spring.domain.Student" >
+    <bean id="student" class="asia.xiaoer.spring.domain.Student" scope="singleton">
         <!-- property标签：通过组件类的set()方法给组件对象设置属性
              name属性：指定属性名
              value属性：指定属性值 -->
@@ -39,7 +39,6 @@
    </bean>
 
 
-
     <bean id="studentThree" class="asia.xiaoer.spring.domain.Student" scope="singleton">
         <!--&lt;!&ndash;注入xml标签符号实体 <> 需要更换为实体&ndash;&gt;-->
         <!--<property name="name" value="&lt;小王&gt;"/>-->
@@ -62,7 +61,7 @@
         <property name="cid" value="1909"/>
     </bean>
 
-    <bean id="studentFour" class="asia.xiaoer.spring.domain.Student" >
+    <bean id="studentFour" class="asia.xiaoer.spring.domain.Student" scope="singleton">
         <property name="name" value="小高"/>
         <property name="sn" value="1001"/>
         <property name="age" value="18"/>
