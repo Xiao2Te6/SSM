@@ -3,6 +3,7 @@ package asia.xiaoer.spring.service.impl;
 
 import asia.xiaoer.spring.dao.UserDao;
 import asia.xiaoer.spring.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +15,7 @@ public class UserServiceImpl implements UserService {
 
     UserDao userDao;
 
+    @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
