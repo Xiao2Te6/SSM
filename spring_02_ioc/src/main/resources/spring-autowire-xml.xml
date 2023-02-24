@@ -5,12 +5,12 @@
 
     <bean id="userDao" class="asia.xiaoer.spring.dao.impl.UserDaoImpl"/>
 
-    <bean id="userService" class="asia.xiaoer.spring.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao"/>
+    <bean id="userService" class="asia.xiaoer.spring.service.impl.UserServiceImpl" autowire="byType">
+        <!--<property name="userDao" ref="userDao"/>-->
     </bean>
 
-    <bean class="asia.xiaoer.spring.controller.impl.UserControllerImpl">
-        <property name="userService" ref="userService"/>
+    <bean class="asia.xiaoer.spring.controller.impl.UserControllerImpl" autowire="byName">
+        <!--<property name="userService" ref="userService"/>-->
     </bean>
 
 </beans>
