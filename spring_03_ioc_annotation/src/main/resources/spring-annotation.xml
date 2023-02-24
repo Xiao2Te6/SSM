@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="asia.xiaoer.spring">
+    <!--
+       context:exclude-filter标签：指定排除规则,排除指定的部分不扫描
+          type：设置排除或包含的依据
+               type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+               type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+
+       context:include-filter标签：指定仅的部分
+              （使用前需要设置扫描主键的 use-default-filters属性：取值false 关闭默认扫描规则，让扫描组件不扫描其他内容）
+    -->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    </context:component-scan>
+</beans>

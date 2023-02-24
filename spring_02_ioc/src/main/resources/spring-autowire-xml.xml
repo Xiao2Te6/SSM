@@ -15,7 +15,7 @@
         <!--<property name="userDao" ref="userDao"/>-->
     </bean>
 
-    <bean id="userController" class="asia.xiaoer.spring.controller.UserControllerImpl " autowire="byType">
+    <bean id="userController" class="asia.xiaoer.spring.controller.UserController " autowire="byType">
         <!--<property name="userService" ref="userService"/>-->
     </bean>
 
