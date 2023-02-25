@@ -39,6 +39,7 @@ public class ProxyFactory {
                     try {
                         System.out.println("[日志] " + method.getName() + " 方法开始了，参数是：" + Arrays.asList(args));
 
+                        //表示目标方法的执行（被代理对象核心方法执行）
                         invoke = method.invoke(target, args);
 
                         System.out.println("[日志] div 方法结束了，结果是：" + invoke);

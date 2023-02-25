@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--
+        基于注解的aop实现：
+            1. 创建切面类并通过@Aspect标示为一个切面
+            2. 将目标对象和切面对象交给IOC容器管理（使用注解+扫描）
+            3. 开启AspectJ的自动代理（基于注解的aop），为目标对象自动生成代理
+    -->
+
+    <!--包扫描工具-->
+    <context:component-scan base-package="asia.xiaoer.spring.aop.annotation"/>
+
+    <!--开启AspectJ的自动代理（基于注解的aop），为目标对象自动生成代理-->
+    <aop:aspectj-autoproxy/>
+
+
+</beans>
