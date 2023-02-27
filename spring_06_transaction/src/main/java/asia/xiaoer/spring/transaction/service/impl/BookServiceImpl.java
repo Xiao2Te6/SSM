@@ -21,24 +21,24 @@ public class BookServiceImpl implements BookService {
     BookDao bookDao;
 
     @Override
-    @Transactional(
-            // readOnly = true
-
-            // timeout = 3
-
-            // noRollbackFor = ArithmeticException.class //不因为算术异常回滚
-            // noRollbackForClassName = "java.long.ArithmeticException" //不因为算术异常回滚
-
-            // isolation = Isolation.DEFAULT//使用数据库默认的隔离级别
-            // isolation = Isolation.READ_UNCOMMITTED//读未提交
-            // isolation = Isolation.READ_COMMITTED//读已提交
-            // isolation = Isolation.REPEATABLE_READ//可重复读
-            // isolation = Isolation.SERIALIZABLE//串行化
-
-            // propagation = Propagation.REQUIRED 默认传播行为
-            propagation = Propagation.REQUIRES_NEW
-
-    )
+    // @Transactional(
+    //         // readOnly = true
+    //
+    //         // timeout = 3
+    //
+    //         // noRollbackFor = ArithmeticException.class //不因为算术异常回滚
+    //         // noRollbackForClassName = "java.long.ArithmeticException" //不因为算术异常回滚
+    //
+    //         // isolation = Isolation.DEFAULT//使用数据库默认的隔离级别
+    //         // isolation = Isolation.READ_UNCOMMITTED//读未提交
+    //         // isolation = Isolation.READ_COMMITTED//读已提交
+    //         // isolation = Isolation.REPEATABLE_READ//可重复读
+    //         // isolation = Isolation.SERIALIZABLE//串行化
+    //
+    //         // propagation = Propagation.REQUIRED 默认传播行为
+    //         propagation = Propagation.REQUIRES_NEW
+    //
+    // )
     public void byBook(Integer userId, Integer bookId) {
         // //睡眠3秒
         // try {

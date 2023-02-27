@@ -28,8 +28,7 @@
         <property name="dataSource" ref="druidDataSource"/>
     </bean>
 
-    <!--开启事务注解驱动,通过注解@Transactional所标识的方法或标识的类中所有的方法，都会被事务管理器管理事务-->
+    <!--&lt;!&ndash;开启事务注解驱动,通过注解@Transactional所标识的方法或标识的类中所有的方法，都会被事务管理器管理事务&ndash;&gt;-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
 
 </beans>

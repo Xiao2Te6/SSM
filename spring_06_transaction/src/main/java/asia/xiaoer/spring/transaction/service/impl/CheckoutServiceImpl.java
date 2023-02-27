@@ -18,7 +18,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     //一次性买多本书
     @Override
-    @Transactional
+    // @Transactional
     public void checkout(Integer userId, Integer[] bookIds){
         for (Integer booId : bookIds){
             bookService.byBook(userId, booId);
