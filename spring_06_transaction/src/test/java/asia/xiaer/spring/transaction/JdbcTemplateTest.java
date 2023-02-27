@@ -1,6 +1,6 @@
-package asia.xiaer.spring.tansaction;
+package asia.xiaer.spring.transaction;
 
-import asia.xiaoer.spring.tansaction.domain.User;
+import asia.xiaoer.spring.transaction.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

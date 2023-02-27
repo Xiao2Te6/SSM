@@ -1,4 +1,4 @@
-package asia.xiaoer.spring.tansaction.domain;
+package asia.xiaoer.spring.transaction.domain;
 
 import lombok.*;
 
