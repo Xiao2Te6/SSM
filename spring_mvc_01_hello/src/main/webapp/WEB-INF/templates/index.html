@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <h1>首页</h1>
+    <a href="/hello">使用绝对路径直接跳转</a>
+    <br>
+    <a th:href="@{/hello}">使用thymeleaf模板引擎解析跳转</a>
+</body>
+</html>

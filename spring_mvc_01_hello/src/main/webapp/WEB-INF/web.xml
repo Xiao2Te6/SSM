@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--配置SpringMVC 的前端控制器DispatcherServlet-->
+    <servlet>
+        <servlet-name>springMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 通过初始化参数指定SpringMVC配置文件的位置和名称
+            若不指定，springMVC的配置文件只能和web.xml放在同一路径下，且文件名称为 web.xml 中 <servlet-name>标签的值-servlet  -->
+        <init-param>
+            <!-- contextConfigLocation为固定值 -->
+            <param-name>contextConfigLocation</param-name>
+            <!-- 使用classpath:表示从类路径查找配置文件，例如maven工程中的
+            src/main/resources -->
+            <param-value>classpath:spring-mvc-hello.xml</param-value>
+        </init-param>
+        <!--
+        作为框架的核心组件，在启动过程中有大量的初始化操作要做
+        而这些操作放在第一次请求时才执行会严重影响访问速度
+        因此需要通过此标签将启动控制DispatcherServlet的初始化时间提前到服务器启动时
+        -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springMVC</servlet-name>
+        <!--/ 表示拦截浏览器除开 .jsp类型 以外的所有请求
+            /* 表示拦截所有浏览器的请求 包括 .jsp类型 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
