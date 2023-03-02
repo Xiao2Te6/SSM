@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 // @RequestMapping("/test")
-public class TestRequestMappingController {
+public class RequestMappingTestController {
 
     //RequestMapping注解属性测试
     @RequestMapping(value = {"/hello","/abc"},

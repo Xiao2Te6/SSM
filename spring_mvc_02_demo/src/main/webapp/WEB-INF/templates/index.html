@@ -24,5 +24,19 @@
     <br>
     <br>
     <a th:href="@{/log/admin/1234}">SpringMVC 路径中的占位符测试</a>
+    <hr>
+    <form th:action="@{/param/servletAPI}">
+        <input type="text" name="username" />
+        <input type="password" name="password"/>
+        <input type="submit" value="servletAPI获取数据测试">
+    </form>
+    <hr>
+    <form th:action="@{/param}">
+        <input type="text" name="userName" />
+        <input type="password" name="password"/>
+        <input type="submit" value="通过参数获取数据测试">
+    </form>
+    <hr>
+    <a th:href="@{/header}">请求头和cookie信息获取测试</a>
 </body>
 </html>
