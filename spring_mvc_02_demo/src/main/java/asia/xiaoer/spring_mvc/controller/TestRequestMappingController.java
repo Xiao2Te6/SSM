@@ -1,6 +1,7 @@
 package asia.xiaoer.spring_mvc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,6 +30,14 @@ public class TestRequestMappingController {
                     "/ant/**/hello" // **可以匹配任意层数的任意目录（得写在一层目录中）
     )
     public String antTest(){
+        return "hello";
+    }
+
+
+    @RequestMapping("/log/{username}/{password}")
+    public String restTest(@PathVariable("username") String username,@PathVariable("password") String password){
+        System.out.println("username = " + username);
+        System.out.println("password = " + password);
         return "hello";
     }
 }
