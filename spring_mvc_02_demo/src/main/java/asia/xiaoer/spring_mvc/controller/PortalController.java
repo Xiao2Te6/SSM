@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PortalController {
 
-    @RequestMapping("/")
-    public String portal(){
-        return "index";
-    }
+    // @RequestMapping("/")
+    // public String portal(){
+    //     return "index";
+    // }
 }
