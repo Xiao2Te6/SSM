@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>REST Test</title>
+</head>
+<body>
+    <a th:href="@{/user}">rest getUser测试</a><br><br>
+
+    <a th:href="@{/user/1}">rest getUserById测试</a><br><br>
+
+    <form th:action="@{/user}" method="post">
+        <input type="submit" value="rest saveUser测试"/>
+    </form>
+    <br><br>
+
+    <form th:action="@{/user}" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="submit" value="rest updateUser测试"/>
+    </form>
+    <br><br>
+
+    <form th:action="@{/user/2}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="rest deleteUserById测试"/>
+    </form>
+    <br><br>
+
+</body>
+</html>
