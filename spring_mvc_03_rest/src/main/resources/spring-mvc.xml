@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.alibaba.com/schema/stat http://www.alibaba.com/schema/stat.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--注解扫描组件-->
-    <context:component-scan base-package="asia.xiaoer.spring_mvc.controller"/>
+    <context:component-scan base-package="asia.xiaoer.spring_mvc"/>
 
     <!-- 配置Thymeleaf视图解析器 -->
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
@@ -32,6 +32,15 @@
     <!--开启springmvc注解驱动-->
     <mvc:annotation-driven/>
 
+    <!--开启默认servlet处理资源
+            前端控制器DispatcherServlet 拦截了 / 下的所有请求，但无法处理静态资源
+            配置了 mvc:default-servlet-handler 不配置springmvc注解驱动器 则所有的资源都会被 默认的servlet处理
+            两个同时都配置时，/下的资源就会先被 DispatcherServlet 处理，处理不了在由默认的servlet处理-->
+    <mvc:default-servlet-handler/>
+
     <!--视图控制器-->
     <mvc:view-controller path="/" view-name="index"/>
+    <mvc:view-controller path="/to/add" view-name="employee_add"/>
+
+
 </beans>
