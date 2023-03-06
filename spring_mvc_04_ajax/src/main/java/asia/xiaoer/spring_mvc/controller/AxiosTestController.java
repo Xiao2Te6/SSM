@@ -29,17 +29,19 @@ public class AxiosTestController {
         response.getWriter().println("hello,axios");
     }
 
-    //测试 @RequestBody 注解将请求体中的参数处理成实体类对象
-    @PostMapping("/test/RequestBody")
-    public void requestBodyTest(@RequestBody User user){
-        System.out.println(user);
-    }
-
-    // //测试 @RequestBody 注解将请求体中的参数处理成map对象
+    // //测试 @RequestBody 注解将请求体中的参数处理成实体类对象
     // @PostMapping("/test/RequestBody")
-    // public void requestBodyTest(@RequestBody Map<String, Object> map){
-    //     System.out.println(map);
+    // public String requestBodyTest(@RequestBody User user){
+    //     System.out.println("user = " + user);
+    //     return "hello";
     // }
+
+    //测试 @RequestBody 注解将请求体中的参数处理成map对象
+    @PostMapping("/test/RequestBody")
+    public String requestBodyTest(@RequestBody Map<String, Object> map){
+        System.out.println("map = " + map);
+        return "hello";
+    }
 
     //测试 @RequestBody 注解作用
     @GetMapping("/test/ResponseBody")

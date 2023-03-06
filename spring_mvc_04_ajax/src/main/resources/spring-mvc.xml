@@ -38,4 +38,7 @@
     <!--视图控制器-->
     <mvc:view-controller path="/" view-name="index"/>
 
+    <!--必须通过文件解析器的解析才能将文件转换为MultipartFile对象-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
 </beans>
