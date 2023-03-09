@@ -1,10 +1,12 @@
 package asia.xiaoer.spring_mvc.config;
 
+import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
 
 /**
  * @author : XiaoEr
@@ -45,4 +47,9 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter};
     }
 
+    // @Override
+    // protected void registerContextLoaderListener(ServletContext servletContext) {
+    //     ContextLoaderListener contextLoaderListener = new ContextLoaderListener();
+    //     servletContext.addListener(contextLoaderListener);
+    // }
 }
