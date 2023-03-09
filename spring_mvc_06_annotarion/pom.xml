@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>asia.xiaoer.spring_mvc</groupId>
-    <artifactId>spirng_mvc_annotarion</artifactId>
+    <artifactId>spring_mvc_annotarion</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
